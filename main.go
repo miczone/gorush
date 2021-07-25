@@ -14,13 +14,13 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/appleboy/gorush/config"
-	"github.com/appleboy/gorush/core"
-	"github.com/appleboy/gorush/logx"
-	"github.com/appleboy/gorush/notify"
-	"github.com/appleboy/gorush/router"
-	"github.com/appleboy/gorush/rpc"
-	"github.com/appleboy/gorush/status"
+	"github.com/miczone/gorush/config"
+	"github.com/miczone/gorush/core"
+	"github.com/miczone/gorush/logx"
+	"github.com/miczone/gorush/notify"
+	"github.com/miczone/gorush/router"
+	"github.com/miczone/gorush/rpc"
+	"github.com/miczone/gorush/status"
 
 	"github.com/appleboy/queue"
 	"github.com/appleboy/queue/nsq"
@@ -291,7 +291,7 @@ func main() {
 			return
 		}
 
-		if err := notify.InitAPNSClient(cfg); err != nil {
+		if _, err := notify.InitAPNSClient(cfg, cfg.Ios.KeyPath, cfg.Ios.KeyBase64, cfg.Ios.KeyType, cfg.Ios.Password, cfg.Ios.KeyID, cfg.Ios.TeamID); err != nil {
 			return
 		}
 		notify.PushToIOS(req)
@@ -361,7 +361,7 @@ func main() {
 	})
 
 	if cfg.Ios.Enabled {
-		if err = notify.InitAPNSClient(cfg); err != nil {
+		if _, err = notify.InitAPNSClient(cfg, cfg.Ios.KeyPath, cfg.Ios.KeyBase64, cfg.Ios.KeyType, cfg.Ios.Password, cfg.Ios.KeyID, cfg.Ios.TeamID); err != nil {
 			logx.LogError.Fatal(err)
 		}
 	}

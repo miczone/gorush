@@ -4,8 +4,8 @@ import (
 	"log"
 	"testing"
 
-	"github.com/appleboy/gorush/config"
-	"github.com/appleboy/gorush/status"
+	"github.com/miczone/gorush/config"
+	"github.com/miczone/gorush/status"
 )
 
 func TestMain(m *testing.M) {

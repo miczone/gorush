@@ -8,9 +8,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/appleboy/gorush/config"
-	"github.com/appleboy/gorush/core"
-	"github.com/appleboy/gorush/logx"
+	"github.com/miczone/gorush/config"
+	"github.com/miczone/gorush/core"
+	"github.com/miczone/gorush/logx"
 
 	"github.com/appleboy/go-fcm"
 	"github.com/appleboy/queue"
@@ -100,21 +100,27 @@ type PushNotification struct {
 	FastAppTarget      int                        `json:"fast_app_target,omitempty"`
 
 	// iOS
-	Expiration  *int64   `json:"expiration,omitempty"`
-	ApnsID      string   `json:"apns_id,omitempty"`
-	CollapseID  string   `json:"collapse_id,omitempty"`
-	Topic       string   `json:"topic,omitempty"`
-	PushType    string   `json:"push_type,omitempty"`
-	Badge       *int     `json:"badge,omitempty"`
-	Category    string   `json:"category,omitempty"`
-	ThreadID    string   `json:"thread-id,omitempty"`
-	URLArgs     []string `json:"url-args,omitempty"`
-	Alert       Alert    `json:"alert,omitempty"`
-	Production  bool     `json:"production,omitempty"`
-	Development bool     `json:"development,omitempty"`
-	SoundName   string   `json:"name,omitempty"`
-	SoundVolume float32  `json:"volume,omitempty"`
-	Apns        D        `json:"apns,omitempty"`
+	Expiration    *int64   `json:"expiration,omitempty"`
+	ApnsID        string   `json:"apns_id,omitempty"`
+	CollapseID    string   `json:"collapse_id,omitempty"`
+	Topic         string   `json:"topic,omitempty"`
+	PushType      string   `json:"push_type,omitempty"`
+	Badge         *int     `json:"badge,omitempty"`
+	Category      string   `json:"category,omitempty"`
+	ThreadID      string   `json:"thread-id,omitempty"`
+	URLArgs       []string `json:"url-args,omitempty"`
+	Alert         Alert    `json:"alert,omitempty"`
+	Production    bool     `json:"production,omitempty"`
+	Development   bool     `json:"development,omitempty"`
+	SoundName     string   `json:"name,omitempty"`
+	SoundVolume   float32  `json:"volume,omitempty"`
+	Apns          D        `json:"apns,omitempty"`
+	ApnsKeyPath   string   `json:"apns_key_path,omitempty"`
+	ApnsKeyBase64 string   `json:"apns_key_base64,omitempty"`
+	ApnsKeyType   string   `json:"apns_key_type,omitempty"`
+	ApnsPassword  string   `json:"apns_password,omitempty"`
+	ApnsKeyID     string   `json:"apns_key_id,omitempty"`
+	ApnsTeamID    string   `json:"apns_team_id,omitempty"`
 }
 
 // WaitDone decrements the WaitGroup counter.

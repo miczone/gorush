@@ -10,8 +10,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/appleboy/gorush/config"
-	"github.com/appleboy/gorush/logx"
+	"github.com/miczone/gorush/config"
+	"github.com/miczone/gorush/logx"
 
 	"github.com/appleboy/queue"
 	"golang.org/x/sync/errgroup"

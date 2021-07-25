@@ -11,10 +11,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/appleboy/gorush/config"
-	"github.com/appleboy/gorush/core"
-	"github.com/appleboy/gorush/logx"
-	"github.com/appleboy/gorush/status"
+	"github.com/miczone/gorush/config"
+	"github.com/miczone/gorush/core"
+	"github.com/miczone/gorush/logx"
+	"github.com/miczone/gorush/status"
 
 	"github.com/mitchellh/mapstructure"
 	"github.com/sideshow/apns2"
@@ -53,23 +53,53 @@ type Sound struct {
 }
 
 // InitAPNSClient use for initialize APNs Client.
-func InitAPNSClient(cfg config.ConfYaml) error {
+func InitAPNSClient(cfg config.ConfYaml, key_path string, key_base64 string, key_type string, password string, key_id string, team_id string) (*apns2.Client, error) {
 	if cfg.Ios.Enabled {
 		var err error
 		var authKey *ecdsa.PrivateKey
 		var certificateKey tls.Certificate
 		var ext string
 
-		if cfg.Ios.KeyPath != "" {
-			ext = filepath.Ext(cfg.Ios.KeyPath)
+		var key_file_path = cfg.Ios.KeyPath
+		if key_file_path == "" {
+			key_file_path = key_path
+		}
+
+		var key_base64_string = cfg.Ios.KeyBase64
+		if key_base64_string == "" {
+			key_base64_string = key_base64
+		}
+
+		var key_password = cfg.Ios.Password
+		if key_password == "" {
+			key_password = password
+		}
+
+		var key_type_string = cfg.Ios.KeyType
+		if key_type_string == "" {
+			key_type_string = key_type
+		}
+
+		var key_id_string = cfg.Ios.KeyID
+		if key_id_string == "" {
+			key_id_string = key_id
+		}
+
+		var team_id_string = cfg.Ios.TeamID
+		if team_id_string == "" {
+			team_id_string = team_id
+		}
+
+		if key_file_path != "" {
+			ext = filepath.Ext(key_file_path)
 
 			switch ext {
 			case ".p12":
-				certificateKey, err = certificate.FromP12File(cfg.Ios.KeyPath, cfg.Ios.Password)
+				certificateKey, err = certificate.FromP12File(key_file_path, key_password)
 			case ".pem":
-				certificateKey, err = certificate.FromPemFile(cfg.Ios.KeyPath, cfg.Ios.Password)
+				certificateKey, err = certificate.FromPemFile(key_file_path, key_password)
 			case ".p8":
-				authKey, err = token.AuthKeyFromFile(cfg.Ios.KeyPath)
+				authKey, err = token.AuthKeyFromFile(key_file_path)
 			default:
 				err = errors.New("wrong certificate key extension")
 			}
@@ -77,21 +107,21 @@ func InitAPNSClient(cfg config.ConfYaml) error {
 			if err != nil {
 				logx.LogError.Error("Cert Error:", err.Error())
 
-				return err
+				return nil, err
 			}
-		} else if cfg.Ios.KeyBase64 != "" {
-			ext = "." + cfg.Ios.KeyType
-			key, err := base64.StdEncoding.DecodeString(cfg.Ios.KeyBase64)
+		} else if key_base64_string != "" {
+			ext = "." + key_type_string
+			key, err := base64.StdEncoding.DecodeString(key_base64_string)
 			if err != nil {
 				logx.LogError.Error("base64 decode error:", err.Error())
 
-				return err
+				return nil, err
 			}
 			switch ext {
 			case ".p12":
-				certificateKey, err = certificate.FromP12Bytes(key, cfg.Ios.Password)
+				certificateKey, err = certificate.FromP12Bytes(key, key_password)
 			case ".pem":
-				certificateKey, err = certificate.FromPemBytes(key, cfg.Ios.Password)
+				certificateKey, err = certificate.FromPemBytes(key, key_password)
 			case ".p8":
 				authKey, err = token.AuthKeyFromBytes(key)
 			default:
@@ -101,22 +131,22 @@ func InitAPNSClient(cfg config.ConfYaml) error {
 			if err != nil {
 				logx.LogError.Error("Cert Error:", err.Error())
 
-				return err
+				return nil, err
 			}
 		}
 
 		if ext == ".p8" {
-			if cfg.Ios.KeyID == "" || cfg.Ios.TeamID == "" {
+			if key_id_string == "" || team_id_string == "" {
 				msg := "You should provide ios.KeyID and ios.TeamID for P8 token"
 				logx.LogError.Error(msg)
-				return errors.New(msg)
+				return nil, errors.New(msg)
 			}
 			token := &token.Token{
 				AuthKey: authKey,
 				// KeyID from developer account (Certificates, Identifiers & Profiles -> Keys)
-				KeyID: cfg.Ios.KeyID,
+				KeyID: key_id_string,
 				// TeamID from developer account (View Account -> Membership)
-				TeamID: cfg.Ios.TeamID,
+				TeamID: team_id_string,
 			}
 
 			ApnsClient, err = newApnsTokenClient(cfg, token)
@@ -131,7 +161,7 @@ func InitAPNSClient(cfg config.ConfYaml) error {
 		if err != nil {
 			logx.LogError.Error("Transport Error:", err.Error())
 
-			return err
+			return nil, err
 		}
 
 		doOnce.Do(func() {
@@ -139,7 +169,7 @@ func InitAPNSClient(cfg config.ConfYaml) error {
 		})
 	}
 
-	return nil
+	return ApnsClient, nil
 }
 
 func newApnsClient(cfg config.ConfYaml, certificate tls.Certificate) (*apns2.Client, error) {
@@ -372,19 +402,25 @@ func GetIOSNotification(req PushNotification) *apns2.Notification {
 	return notification
 }
 
-func getApnsClient(cfg config.ConfYaml, req PushNotification) (client *apns2.Client) {
+func getApnsClient(cfg config.ConfYaml, req PushNotification) (*apns2.Client, error) {
+	var apns_client, err = InitAPNSClient(cfg, req.ApnsKeyPath, req.ApnsKeyBase64, req.ApnsKeyType, req.ApnsPassword, req.ApnsKeyID, req.ApnsTeamID)
+	if err != nil {
+		return nil, err
+	}
+
+	var client *apns2.Client
 	if req.Production {
-		client = ApnsClient.Production()
+		client = apns_client.Production()
 	} else if req.Development {
-		client = ApnsClient.Development()
+		client = apns_client.Development()
 	} else {
 		if cfg.Ios.Production {
-			client = ApnsClient.Production()
+			client = apns_client.Production()
 		} else {
-			client = ApnsClient.Development()
+			client = apns_client.Development()
 		}
 	}
-	return
+	return client, nil
 }
 
 // PushToIOS provide send notification to APNs server.
@@ -408,7 +444,13 @@ Retry:
 	var newTokens []string
 
 	notification := GetIOSNotification(req)
-	client := getApnsClient(req.Cfg, req)
+	client, err := getApnsClient(req.Cfg, req)
+
+	if err != nil {
+		// APNS server error
+		logx.LogError.Error("APN server error: " + err.Error())
+		return
+	}
 
 	var wg sync.WaitGroup
 	for _, token := range req.Tokens {

@@ -9,12 +9,12 @@ import (
 	"os"
 	"sync"
 
-	"github.com/appleboy/gorush/config"
-	"github.com/appleboy/gorush/core"
-	"github.com/appleboy/gorush/logx"
-	"github.com/appleboy/gorush/metric"
-	"github.com/appleboy/gorush/notify"
-	"github.com/appleboy/gorush/status"
+	"github.com/miczone/gorush/config"
+	"github.com/miczone/gorush/core"
+	"github.com/miczone/gorush/logx"
+	"github.com/miczone/gorush/metric"
+	"github.com/miczone/gorush/notify"
+	"github.com/miczone/gorush/status"
 
 	api "github.com/appleboy/gin-status-api"
 	"github.com/appleboy/queue"
@@ -58,7 +58,7 @@ func heartbeatHandler(c *gin.Context) {
 
 func versionHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
-		"source":  "https://github.com/appleboy/gorush",
+		"source":  "https://github.com/miczone/gorush",
 		"version": GetVersion(),
 	})
 }
@@ -97,7 +97,7 @@ func pushHandler(cfg config.ConfYaml, q *queue.Queue) gin.HandlerFunc {
 			<-c.Request.Context().Done()
 			// Don't send notification after client timeout or disconnected.
 			// See the following issue for detail information.
-			// https://github.com/appleboy/gorush/issues/422
+			// https://github.com/miczone/gorush/issues/422
 			if cfg.Core.Sync {
 				cancel()
 			}

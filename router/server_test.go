@@ -11,10 +11,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/appleboy/gorush/config"
-	"github.com/appleboy/gorush/core"
-	"github.com/appleboy/gorush/notify"
-	"github.com/appleboy/gorush/status"
+	"github.com/miczone/gorush/config"
+	"github.com/miczone/gorush/core"
+	"github.com/miczone/gorush/notify"
+	"github.com/miczone/gorush/status"
 
 	"github.com/appleboy/gofight/v2"
 	"github.com/appleboy/queue"
@@ -462,7 +462,7 @@ func TestSenMultipleNotifications(t *testing.T) {
 
 	cfg.Ios.Enabled = true
 	cfg.Ios.KeyPath = "../certificate/certificate-valid.pem"
-	err := notify.InitAPNSClient(cfg)
+	_, err := notify.InitAPNSClient(cfg, cfg.Ios.KeyPath, cfg.Ios.KeyBase64, cfg.Ios.KeyType, cfg.Ios.Password, cfg.Ios.KeyID, cfg.Ios.TeamID)
 	assert.Nil(t, err)
 
 	cfg.Android.Enabled = true
@@ -498,7 +498,7 @@ func TestDisabledAndroidNotifications(t *testing.T) {
 
 	cfg.Ios.Enabled = true
 	cfg.Ios.KeyPath = "../certificate/certificate-valid.pem"
-	err := notify.InitAPNSClient(cfg)
+	_, err := notify.InitAPNSClient(cfg, cfg.Ios.KeyPath, cfg.Ios.KeyBase64, cfg.Ios.KeyType, cfg.Ios.Password, cfg.Ios.KeyID, cfg.Ios.TeamID)
 	assert.Nil(t, err)
 
 	cfg.Android.Enabled = false
@@ -534,7 +534,7 @@ func TestSyncModeForNotifications(t *testing.T) {
 
 	cfg.Ios.Enabled = true
 	cfg.Ios.KeyPath = "../certificate/certificate-valid.pem"
-	err := notify.InitAPNSClient(cfg)
+	_, err := notify.InitAPNSClient(cfg, cfg.Ios.KeyPath, cfg.Ios.KeyBase64, cfg.Ios.KeyType, cfg.Ios.Password, cfg.Ios.KeyID, cfg.Ios.TeamID)
 	assert.Nil(t, err)
 
 	cfg.Android.Enabled = true
@@ -646,7 +646,7 @@ func TestDisabledIosNotifications(t *testing.T) {
 
 	cfg.Ios.Enabled = false
 	cfg.Ios.KeyPath = "../certificate/certificate-valid.pem"
-	err := notify.InitAPNSClient(cfg)
+	_, err := notify.InitAPNSClient(cfg, cfg.Ios.KeyPath, cfg.Ios.KeyBase64, cfg.Ios.KeyType, cfg.Ios.Password, cfg.Ios.KeyID, cfg.Ios.TeamID)
 	assert.Nil(t, err)
 
 	cfg.Android.Enabled = true

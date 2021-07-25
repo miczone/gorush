@@ -3,7 +3,7 @@ package rpc
 import (
 	"context"
 
-	"github.com/appleboy/gorush/rpc/proto"
+	"github.com/miczone/gorush/rpc/proto"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"

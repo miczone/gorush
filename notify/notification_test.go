@@ -3,7 +3,7 @@ package notify
 import (
 	"testing"
 
-	"github.com/appleboy/gorush/config"
+	"github.com/miczone/gorush/config"
 	"github.com/stretchr/testify/assert"
 )
 

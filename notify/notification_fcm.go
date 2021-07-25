@@ -4,10 +4,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/appleboy/gorush/config"
-	"github.com/appleboy/gorush/core"
-	"github.com/appleboy/gorush/logx"
-	"github.com/appleboy/gorush/status"
+	"github.com/miczone/gorush/config"
+	"github.com/miczone/gorush/core"
+	"github.com/miczone/gorush/logx"
+	"github.com/miczone/gorush/status"
 
 	"github.com/appleboy/go-fcm"
 	"github.com/sirupsen/logrus"
