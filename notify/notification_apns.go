@@ -60,34 +60,34 @@ func InitAPNSClient(cfg config.ConfYaml, key_path string, key_base64 string, key
 		var certificateKey tls.Certificate
 		var ext string
 
-		var key_file_path = cfg.Ios.KeyPath
+		var key_file_path = key_path
 		if key_file_path == "" {
-			key_file_path = key_path
+			key_file_path = cfg.Ios.KeyPath
 		}
 
-		var key_base64_string = cfg.Ios.KeyBase64
+		var key_base64_string = key_base64
 		if key_base64_string == "" {
-			key_base64_string = key_base64
+			key_base64_string = cfg.Ios.KeyBase64
 		}
 
-		var key_password = cfg.Ios.Password
+		var key_password = password
 		if key_password == "" {
-			key_password = password
+			key_password = cfg.Ios.Password
 		}
 
-		var key_type_string = cfg.Ios.KeyType
+		var key_type_string = key_type
 		if key_type_string == "" {
-			key_type_string = key_type
+			key_type_string = cfg.Ios.KeyType
 		}
 
-		var key_id_string = cfg.Ios.KeyID
+		var key_id_string = key_id
 		if key_id_string == "" {
-			key_id_string = key_id
+			key_id_string = cfg.Ios.KeyID
 		}
 
-		var team_id_string = cfg.Ios.TeamID
+		var team_id_string = team_id
 		if team_id_string == "" {
-			team_id_string = team_id
+			team_id_string = cfg.Ios.TeamID
 		}
 
 		if key_file_path != "" {
