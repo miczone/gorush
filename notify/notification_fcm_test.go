@@ -8,8 +8,8 @@ import (
 	"github.com/wokaio/gorush/core"
 	"github.com/wokaio/gorush/logx"
 
+	"github.com/appleboy/go-fcm"
 	"github.com/stretchr/testify/assert"
-	"github.com/wokaio/go-fcm"
 )
 
 func TestMissingAndroidAPIKey(t *testing.T) {
