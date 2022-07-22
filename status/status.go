@@ -3,15 +3,15 @@ package status
 import (
 	"errors"
 
-	"github.com/miczone/gorush/config"
-	"github.com/miczone/gorush/logx"
-	"github.com/miczone/gorush/storage"
-	"github.com/miczone/gorush/storage/badger"
-	"github.com/miczone/gorush/storage/boltdb"
-	"github.com/miczone/gorush/storage/buntdb"
-	"github.com/miczone/gorush/storage/leveldb"
-	"github.com/miczone/gorush/storage/memory"
-	"github.com/miczone/gorush/storage/redis"
+	"github.com/wokaio/gorush/config"
+	"github.com/wokaio/gorush/logx"
+	"github.com/wokaio/gorush/storage"
+	"github.com/wokaio/gorush/storage/badger"
+	"github.com/wokaio/gorush/storage/boltdb"
+	"github.com/wokaio/gorush/storage/buntdb"
+	"github.com/wokaio/gorush/storage/leveldb"
+	"github.com/wokaio/gorush/storage/memory"
+	"github.com/wokaio/gorush/storage/redis"
 
 	"github.com/thoas/stats"
 )

@@ -6,8 +6,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/miczone/gorush/config"
-	"github.com/miczone/gorush/logx"
+	"github.com/wokaio/gorush/config"
+	"github.com/wokaio/gorush/logx"
 
 	"github.com/stretchr/testify/assert"
 )

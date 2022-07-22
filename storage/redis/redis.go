@@ -3,13 +3,13 @@ package redis
 import (
 	"strconv"
 
-	"github.com/miczone/gorush/config"
-	"github.com/miczone/gorush/storage"
+	"github.com/wokaio/gorush/config"
+	"github.com/wokaio/gorush/storage"
 
 	"github.com/go-redis/redis/v7"
 )
 
-// New func implements the storage interface for gorush (https://github.com/miczone/gorush)
+// New func implements the storage interface for gorush (https://github.com/wokaio/gorush)
 func New(config config.ConfYaml) *Storage {
 	return &Storage{
 		config: config,

@@ -3,8 +3,8 @@ package boltdb
 import (
 	"testing"
 
-	"github.com/miczone/gorush/config"
 	"github.com/stretchr/testify/assert"
+	"github.com/wokaio/gorush/config"
 )
 
 func TestBoltDBEngine(t *testing.T) {

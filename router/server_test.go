@@ -11,10 +11,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/miczone/gorush/config"
-	"github.com/miczone/gorush/core"
-	"github.com/miczone/gorush/notify"
-	"github.com/miczone/gorush/status"
+	"github.com/wokaio/gorush/config"
+	"github.com/wokaio/gorush/core"
+	"github.com/wokaio/gorush/notify"
+	"github.com/wokaio/gorush/status"
 
 	"github.com/appleboy/gofight/v2"
 	"github.com/appleboy/queue"

@@ -4,8 +4,8 @@ import (
 	"log"
 	"testing"
 
-	"github.com/miczone/gorush/config"
-	"github.com/miczone/gorush/status"
+	"github.com/wokaio/gorush/config"
+	"github.com/wokaio/gorush/status"
 )
 
 func TestMain(m *testing.M) {

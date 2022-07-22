@@ -3,8 +3,8 @@ package notify
 import (
 	"testing"
 
-	"github.com/miczone/gorush/config"
 	"github.com/stretchr/testify/assert"
+	"github.com/wokaio/gorush/config"
 )
 
 func TestMissingHuaweiAppSecret(t *testing.T) {

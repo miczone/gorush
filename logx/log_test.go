@@ -3,8 +3,8 @@ package logx
 import (
 	"testing"
 
-	"github.com/miczone/gorush/config"
-	"github.com/miczone/gorush/core"
+	"github.com/wokaio/gorush/config"
+	"github.com/wokaio/gorush/core"
 
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"

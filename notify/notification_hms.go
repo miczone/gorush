@@ -5,10 +5,10 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/miczone/gorush/config"
-	"github.com/miczone/gorush/core"
-	"github.com/miczone/gorush/logx"
-	"github.com/miczone/gorush/status"
+	"github.com/wokaio/gorush/config"
+	"github.com/wokaio/gorush/core"
+	"github.com/wokaio/gorush/logx"
+	"github.com/wokaio/gorush/status"
 
 	c "github.com/msalihkarakasli/go-hms-push/push/config"
 	client "github.com/msalihkarakasli/go-hms-push/push/core"

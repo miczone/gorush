@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/miczone/gorush/logx"
+	"github.com/wokaio/gorush/logx"
 )
 
 // DispatchFeedback sends a feedback to the configured gateway.

@@ -4,8 +4,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/miczone/gorush/config"
 	"github.com/stretchr/testify/assert"
+	"github.com/wokaio/gorush/config"
 )
 
 func TestRedisServerError(t *testing.T) {

@@ -1,3 +1,4 @@
+//go:build !lambda
 // +build !lambda
 
 package router
@@ -10,8 +11,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/miczone/gorush/config"
-	"github.com/miczone/gorush/logx"
+	"github.com/wokaio/gorush/config"
+	"github.com/wokaio/gorush/logx"
 
 	"github.com/appleboy/queue"
 	"golang.org/x/sync/errgroup"

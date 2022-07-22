@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/miczone/gorush/config"
+	"github.com/wokaio/gorush/config"
 
 	"github.com/stretchr/testify/assert"
 )

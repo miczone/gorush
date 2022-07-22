@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/miczone/gorush/config"
+	"github.com/wokaio/gorush/config"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/connectivity"

@@ -1,3 +1,4 @@
+//go:build lambda
 // +build lambda
 
 package router
@@ -6,8 +7,8 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/miczone/gorush/config"
-	"github.com/miczone/gorush/logx"
+	"github.com/wokaio/gorush/config"
+	"github.com/wokaio/gorush/logx"
 
 	"github.com/apex/gateway"
 	"github.com/appleboy/queue"

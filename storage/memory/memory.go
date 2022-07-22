@@ -30,7 +30,7 @@ type HuaweiStatus struct {
 	PushError   int64 `json:"push_error"`
 }
 
-// New func implements the storage interface for gorush (https://github.com/miczone/gorush)
+// New func implements the storage interface for gorush (https://github.com/wokaio/gorush)
 func New() *Storage {
 	return &Storage{
 		stat: &statApp{},

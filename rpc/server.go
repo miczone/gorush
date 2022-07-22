@@ -6,11 +6,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/miczone/gorush/config"
-	"github.com/miczone/gorush/core"
-	"github.com/miczone/gorush/logx"
-	"github.com/miczone/gorush/notify"
-	"github.com/miczone/gorush/rpc/proto"
+	"github.com/wokaio/gorush/config"
+	"github.com/wokaio/gorush/core"
+	"github.com/wokaio/gorush/logx"
+	"github.com/wokaio/gorush/notify"
+	"github.com/wokaio/gorush/rpc/proto"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"

@@ -2,10 +2,10 @@
 
 A push notification micro server using [Gin](https://github.com/gin-gonic/gin) framework written in Go (Golang) and see the [demo app](https://github.com/appleboy/flutter-gorush).
 
-[![GoDoc](https://godoc.org/github.com/miczone/gorush?status.svg)](https://godoc.org/github.com/miczone/gorush)
+[![GoDoc](https://godoc.org/github.com/wokaio/gorush?status.svg)](https://godoc.org/github.com/wokaio/gorush)
 [![Build Status](https://cloud.drone.io/api/badges/appleboy/gorush/status.svg)](https://cloud.drone.io/appleboy/gorush)
 [![codecov](https://codecov.io/gh/appleboy/gorush/branch/master/graph/badge.svg)](https://codecov.io/gh/appleboy/gorush)
-[![Go Report Card](https://goreportcard.com/badge/github.com/miczone/gorush)](https://goreportcard.com/report/github.com/miczone/gorush)
+[![Go Report Card](https://goreportcard.com/badge/github.com/wokaio/gorush)](https://goreportcard.com/report/github.com/wokaio/gorush)
 [![codebeat badge](https://codebeat.co/badges/0a4eff2d-c9ac-46ed-8fd7-b59942983390)](https://codebeat.co/projects/github-com-appleboy-gorush)
 [![Docker Pulls](https://img.shields.io/docker/pulls/appleboy/gorush.svg)](https://hub.docker.com/r/appleboy/gorush/)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8ab14c9f-44fd-4d9a-8bba-f73f76d253b1/deploy-status)](https://app.netlify.com/sites/gorush/deploys)
@@ -208,36 +208,36 @@ How to send push notification using `gorush` command? (Android or iOS)
 
 ### Download a binary
 
-The pre-compiled binaries can be downloaded from [release page](https://github.com/miczone/gorush/releases).
+The pre-compiled binaries can be downloaded from [release page](https://github.com/wokaio/gorush/releases).
 
 With `Go` installed
 
 ```sh
-go get -u -v github.com/miczone/gorush
+go get -u -v github.com/wokaio/gorush
 ```
 
 On linux
 
 ```sh
-wget https://github.com/miczone/gorush/releases/download/v1.14.0/gorush-v1.14.0-linux-amd64 -O gorush
+wget https://github.com/wokaio/gorush/releases/download/v1.14.0/gorush-v1.14.0-linux-amd64 -O gorush
 ```
 
 On OS X
 
 ```sh
-wget https://github.com/miczone/gorush/releases/download/v1.14.0/gorush-v1.14.0-darwin-amd64 -O gorush
+wget https://github.com/wokaio/gorush/releases/download/v1.14.0/gorush-v1.14.0-darwin-amd64 -O gorush
 ```
 
 On Windows
 
 ```sh
-wget https://github.com/miczone/gorush/releases/download/v1.14.0/gorush-v1.14.0-windows-amd64.exe -O gorush.exe
+wget https://github.com/wokaio/gorush/releases/download/v1.14.0/gorush-v1.14.0-windows-amd64.exe -O gorush.exe
 ```
 
 On macOS, use Homebrew.
 
 ```sh
-brew install --HEAD https://github.com/miczone/gorush/raw/master/HomebrewFormula/gorush.rb
+brew install --HEAD https://github.com/wokaio/gorush/raw/master/HomebrewFormula/gorush.rb
 ```
 
 ### Install from source
@@ -254,7 +254,7 @@ Gorush uses the Go Modules support built into Go 1.11 to build. The easiest way 
 ```sh
 mkdir $HOME/src
 cd $HOME/src
-git clone https://github.com/miczone/gorush.git
+git clone https://github.com/wokaio/gorush.git
 cd gorush
 go install
 ```
@@ -774,7 +774,7 @@ Add other fields which user defined via `data` field.
 }
 ```
 
-Support send notification from different environment. See the detail of [issue](https://github.com/miczone/gorush/issues/246).
+Support send notification from different environment. See the detail of [issue](https://github.com/wokaio/gorush/issues/246).
 
 ```diff
 {
@@ -1025,7 +1025,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/miczone/gorush/rpc/proto"
+	"github.com/wokaio/gorush/rpc/proto"
 
 	structpb "github.com/golang/protobuf/ptypes/struct"
 	"google.golang.org/grpc"
@@ -1127,7 +1127,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/miczone/gorush/rpc/proto"
+	"github.com/wokaio/gorush/rpc/proto"
 
 	structpb "github.com/golang/protobuf/ptypes/struct"
 	"google.golang.org/grpc"
@@ -1269,7 +1269,7 @@ AWS excited to [announce Go as a supported language for AWS Lambda](https://aws.
 Download source code first.
 
 ```sh
-git clone https://github.com/miczone/gorush.git
+git clone https://github.com/wokaio/gorush.git
 cd gorush && make build_linux_lambda
 ```
 
@@ -1303,7 +1303,7 @@ Or you can deploy gorush to alternative solution like [netlify functions](https:
   functions = "release/linux/lambda"
 
 [build.environment]
-  GO_IMPORT_PATH = "github.com/miczone/gorush"
+  GO_IMPORT_PATH = "github.com/wokaio/gorush"
   GO111MODULE = "on"
 
 [[redirects]]
